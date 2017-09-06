@@ -1,0 +1,9 @@
+Name of Quantlet : Regulatory_Complexity_Distances
+Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
+Description : Computes distances between all sentences in a given version of the GBA and aggregates them to a single complexity measure.
+Keywords :
+Author : Sabine Bertram
+Input : - wordModel: the gensim word2vec model
+        - sentenceModel: the gensim doc2vec model
+        - completeVersions: a dictionary with key: date, value: list of sentences
+Output : older 'output' with files called METHOD_METRIC.txt for each distance calculation method and each metric (mean, sd, iqr)
