@@ -1,0 +1,7 @@
+Name of Quantlet : Regulatory_Complexity_Sentence_Vectors
+Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
+Description : Computes sentence embeddings.
+Keywords :
+Author : Sabine Bertram
+Input : modelData: a list of sentences, split into words
+Output : sentenceModel: a gensim model containing the embeddings and additional info
