@@ -307,7 +307,6 @@ for (key, value) in versions.iteritems():
         oneList += j
     versionsSent[key] = oneList
 
-
 # save data
 with open('pythonData', 'w') as f:
     pickle.dump(pythonData, f)
@@ -315,3 +314,24 @@ with open('modelData', 'w') as g:
     pickle.dump(modelData, g)
 with open('completeVersions', 'w') as h:
     pickle.dump(versionsSent, h)
+
+# generate word and sentence counts
+numOfSents = []
+numOfWords = []
+dates = []
+for (key, value) in versionsSent.iteritems():
+    dates.append(key)
+    numOfSents.append(len(value))
+    words = 0
+    for item in value:
+        words += len(item)
+    numOfWords.append(words)
+
+dates, numOfSents, numOfWords = zip(*sorted(zip(dates, numOfSents, numOfWords)))
+
+descriptives = [numOfSents, numOfWords]
+savenames = ['numSentences.txt', 'numWords.txt']
+for series in descriptives:
+    with open(savenames[descriptives.index(series)], 'w') as f:
+        for i in range(len(series)):
+            f.write(str(dates[i]) + ',' + str(series[i]) + '\n')
