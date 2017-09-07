@@ -143,7 +143,7 @@ for method in ['average', 'tfidf', 'wmd', 'doc2vec']:
 
     # save data
     outputs = [vMeans, vStds, vIQRs]
-    names = ['_mean', '_std', '_iqr']
+    names = ['_means', '_stds', '_iqrs']
     for i, output in enumerate(outputs):
         with open(os.path.join(directory, method + names[i] + '.txt'), 'w') as f:
              for item in output:
