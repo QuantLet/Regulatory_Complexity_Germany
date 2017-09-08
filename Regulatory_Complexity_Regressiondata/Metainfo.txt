@@ -1,7 +1,7 @@
 Name of Quantlet : Regulatory_Complexity_Regressiondata
 Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
 Description : Preprocesses sample data, complexity measures and text descriptive data to be included in regressions or when computing descriptives.
-Keywords :
+Keywords : Regulatory_Complexity, data, preprocessing, dataframe, dplyr
 Author : Sabine Bertram
 Input: - sample data, located in /Regulatory_Complexity_Germany/Sample_Data
        - complexity data, located in /Regulatory_Complexity_Germany/Regulatory_Complexity_Distances/output

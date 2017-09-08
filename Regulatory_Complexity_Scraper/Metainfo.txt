@@ -1,6 +1,6 @@
 Name of Quantlet : Regulatory_Complexity_Scraper
 Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
 Description : Scrapes the webpage http://www.buzer.de that contains all changes to the German Banking Act since 2006.
-Keywords :
+Keywords : Regulatory_Complexity, web, scraper, crawler, proxy, BeautifulSoup, urllib2
 Author : Sabine Bertram
 Output: Folder containing htm files
