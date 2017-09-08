@@ -1,0 +1,10 @@
+Name of Quantlet : Regulatory_Complexity_Descriptives
+Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
+Description : Computes desciptive statistics of complexity measures and bank variables
+Keywords :
+Author : Sabine Bertram
+Input: - regressiondata.csv: sample data and yearly aggregates of complexity, located in Regulatory_Complexity_Regressiondata/data
+       - descriptivedata.csv: complexity and descriptive data, located in Regulatory_Complexity_Regressiondata/data
+Output: 1. Summary statistics complexity measures
+        2. Correlation table
+        3. Summary statistics bank variables
