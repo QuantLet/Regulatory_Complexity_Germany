@@ -1,7 +1,7 @@
 Name of Quantlet : Regulatory_Complexity_Word_Vectors
 Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
-Description : Computes word embeddings.
+Description : Computes word embeddings according to Mikolov et al. (2013) word2vec using gensim
 Keywords : Regulatory_Complexity, word2vec, gensim, word-vectors, embeddings
 Author : Sabine Bertram
-Input : modelData: a list of sentences, split into words
-Output : wordModel: a gensim model containing the embeddings and additional info
+Input : 'modelData: a list of sentences, split into words'
+Output : 'wordModel: a gensim model containing the embeddings and additional info'

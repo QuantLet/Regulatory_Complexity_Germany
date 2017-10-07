@@ -1,9 +1,9 @@
 Name of Quantlet : Regulatory_Complexity_Plots
 Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
-Description : Plots the different complexity measures over time.
+Description : Plots the different complexity measures and their yearly aggregates over time 
 Keywords : Regulatory_Complexity, complexity-measure, plot, plotly, relative-change, percentage-change
 Author : Sabine Bertram
 Input: complexity measures (mean, std, iqr) in /Regulatory_Complexity_Distances/output
-Output: folder 'plots' with plots of
+Output: 'folder "plots" with plots of
         1. relative change of the complexity over time, relative to the initial value
-        2. percentage change of the complexity over time
+        2. percentage change of the complexity over time'

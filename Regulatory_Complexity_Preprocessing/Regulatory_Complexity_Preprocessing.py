@@ -33,9 +33,9 @@ def cleanH(hList):
             plain = re.sub(r'\([A-Z].*?\)|\s\([A-Z].*?\)', '', plain)
         elif re.search(r'^\xa7', plain):
             continue
-        bullets = plain.split('  ')
+        bullets      = plain.split('  ')
         cleanBullets = []
-        cleanP = ''
+        cleanP       = ''
         for p in bullets:
             p = p.strip()
             if p and p.startswith('('):
@@ -121,7 +121,7 @@ cwd = os.getcwd()
 inputPath = os.path.normpath(os.path.join(cwd, "..", 'Regulatory_Complexity_Scraper', 'pages'))
 
 # load pages and save paragraph #, date, list of sentences
-data = []
+data      = []
 modelData = []
 filenames = sorted(os.listdir(inputPath), reverse = True)
 for filename in filenames:
@@ -144,31 +144,31 @@ for filename in filenames:
         # paragraphs that have been changed
         if '-' in filename:
             date = re.findall(r'\d+\.\d+\.\d{4}', title)[0]
-            d = datetime.strptime(date, '%d.%m.%Y')
+            d    = datetime.strptime(date, '%d.%m.%Y')
             date = d.strftime('%Y-%m-%d')
             # print parNum, date
 
             # is this the oldest version?
-            hnav = soup.findAll(text='(keine frühere Fassung vorhanden)')
+            hnav  = soup.findAll(text='(keine frühere Fassung vorhanden)')
             aTags = soup('a')
             lines = ''
             for tag in aTags:
                 lines += tag.get_text() + ' '
-            before = re.findall(r'here Fassung von', lines)
-            after = re.findall(r'chste Fassung von', lines)
+            before   = re.findall(r'here Fassung von', lines)
+            after    = re.findall(r'chste Fassung von', lines)
             multiple = before + after
-            oldest = False
+            oldest   = False
             if hnav or not multiple:
                 oldest = True
 
             abbrevs = ['a.', 'Abs.', 'b.', 'c.', 'Nr.', 'ABl.', 'S.', 'BGBl.', 'u.', 'vgl.', 'd.', 'Gem.', 'v.', 'e.', 'I.', 'bzw.', '1.']
-            repl = ['a_', 'Abs_', 'b_', 'c_', 'Nr_', 'ABl_', 'S_', 'BGBl_', 'u_', 'vgl_', 'd_', 'Gem_', 'v_', 'e_', 'I_', 'bzw_', '1_']
+            repl    = ['a_', 'Abs_', 'b_', 'c_', 'Nr_', 'ABl_', 'S_', 'BGBl_', 'u_', 'vgl_', 'd_', 'Gem_', 'v_', 'e_', 'I_', 'bzw_', '1_']
 
-            days = [str(i) for i in range(1,32)]
+            days   = [str(i) for i in range(1,32)]
             months = ['Januar', 'Februar', 'Maerz', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
 
             abbrevs = abbrevs + [d + '. ' + m for d in days for m in months]
-            repl = repl + [d + '_ ' + m for d in days for m in months]
+            repl    = repl + [d + '_ ' + m for d in days for m in months]
 
 
             # if oldest version, save previous and new version
@@ -247,7 +247,7 @@ for item in data:
         dic[item[0]] = entry
     else:
         sofar = [i[0] for i in dic[item[0]]]
-        flag = 0
+        flag  = 0
         for c, s in enumerate(sofar):
             if item[1] == s:
                 dic[item[0]][c][1] = item[2]
@@ -261,7 +261,7 @@ for key in dic:
     pythonData[key] = sorted(dic[key])
 
 # reoder data by date
-dates = []
+dates  = []
 byDate = {}
 for par in pythonData:
     versions = pythonData[par]
@@ -284,25 +284,25 @@ for (key, value) in byDate.iteritems():
 byDateList = sorted(byDateList)
 
 # construct complete versions of the GBA
-versions = {}
-previous = byDateList[0][1]
+versions    = {}
+previous    = byDateList[0][1]
 previousNum = [i[0] for i in previous]
 for item in byDateList:
-    key = item[0]
+    key   = item[0]
     value = item[1]
-    nums = [i[0] for i in value]
+    nums  = [i[0] for i in value]
     for n in previousNum:
         if n not in nums:
             value.append(previous[previousNum.index(n)])
     versions[key] = natsorted(value)
-    previous = value
-    previousNum = [i[0] for i in previous]
+    previous      = value
+    previousNum   = [i[0] for i in previous]
 
 # give up paragraphs, each version is only list of sentences
 versionsSent = {}
 for (key, value) in versions.iteritems():
     sentLists = [i[1] for i in value]
-    oneList = []
+    oneList   = []
     for j in sentLists:
         oneList += j
     versionsSent[key] = oneList
@@ -318,7 +318,7 @@ with open('completeVersions', 'w') as h:
 # generate word and sentence counts
 numOfSents = []
 numOfWords = []
-dates = []
+dates      = []
 for (key, value) in versionsSent.iteritems():
     dates.append(key)
     numOfSents.append(len(value))
@@ -330,7 +330,7 @@ for (key, value) in versionsSent.iteritems():
 dates, numOfSents, numOfWords = zip(*sorted(zip(dates, numOfSents, numOfWords)))
 
 descriptives = [numOfSents, numOfWords]
-savenames = ['numSentences.txt', 'numWords.txt']
+savenames    = ['numSentences.txt', 'numWords.txt']
 for series in descriptives:
     with open(savenames[descriptives.index(series)], 'w') as f:
         for i in range(len(series)):

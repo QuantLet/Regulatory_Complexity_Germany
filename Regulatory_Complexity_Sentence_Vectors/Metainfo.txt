@@ -1,7 +1,7 @@
 Name of Quantlet : Regulatory_Complexity_Sentence_Vectors
 Published in : Measuring Regulatory Complexity and its Impact on the German Banking Sector
-Description : Computes sentence embeddings.
+Description : Computes sentence embeddings according to Le et al. (2014) doc2vec using gensim
 Keywords : Regulatory_Complexity, doc2vec, gensim, sentence-vectors, embeddings
 Author : Sabine Bertram
-Input : modelData: a list of sentences, split into words
-Output : sentenceModel: a gensim model containing the embeddings and additional info
+Input : 'modelData: a list of sentences, split into words'
+Output : 'sentenceModel: a gensim model containing the embeddings and additional info'

@@ -27,7 +27,7 @@ import pandas as pd
 
 # preprocessing txt files with complexity measures
 def processing(filename, time):
-    cwd = os.getcwd()
+    cwd   = os.getcwd()
     dates = []
     dists = []
     with open(filename, 'rb') as f:
@@ -66,7 +66,7 @@ def processing(filename, time):
 # main
 
 # set import path
-cwd = os.getcwd()
+cwd       = os.getcwd()
 inputPath = os.path.normpath(os.path.join(cwd, "..", 'Regulatory_Complexity_Distances', 'output'))
 
 # create directory for plot output
@@ -75,8 +75,8 @@ if not os.path.exists(directory):
     os.mkdir(directory)
 
 # create time series
-dt = datetime.datetime(day = 01, month = 11, year = 2006)
-end = datetime.datetime(day = 01,month = 02, year = 2017)
+dt   = datetime.datetime(day = 01, month = 11, year = 2006)
+end  = datetime.datetime(day = 01,month = 02, year = 2017)
 step = datetime.timedelta(days = 1)
 time = []
 while dt < end:
@@ -90,7 +90,7 @@ for method in methods:
     # read data
     series = {}
     for f in glob.glob(os.path.join(inputPath, method + '*')):
-        name = os.path.basename(f).strip(method).strip('_').strip('.txt')
+        name         = os.path.basename(f).strip(method).strip('_').strip('.txt')
         series[name] = processing(f, time)
     readData[method] = series
 
@@ -98,7 +98,7 @@ for method in methods:
     data = {}
     for key, value in series.iteritems():
         data[key] = pd.Series(value[1], index = value[0])
-    df = pd.DataFrame(data)
+    df         = pd.DataFrame(data)
     df['year'] = [d[:4] for d in df.index]
 
     titles = {'average':'Average Aggregation', 'tfidf':'TF-IDF Aggregation', 'wmd':"Word Mover's Distances", 'doc2vec':'Doc2Vec'}
@@ -107,7 +107,7 @@ for method in methods:
     trace0 = go.Scatter(x = df.index, y = df.means/df.means[0], mode = 'lines', name = 'Mean')
     trace1 = go.Scatter(x = df.index, y = df.stds/df.stds[0], mode = 'lines', name = 'SD')
     trace2 = go.Scatter(x = df.index, y = df.iqrs/df.iqrs[0], mode = 'lines', name = 'IQR')
-    data = [trace0, trace1, trace2]
+    data   = [trace0, trace1, trace2]
     layout = dict(height=600, width=1000, title = titles[method], yaxis = dict(title = 'Relative change in complexity'), xaxis = dict(tickformat = '%Y-%m-%d', dtick = 'M6'), showlegend=False)
     figure = dict(data=data, layout=layout)
     plotly.offline.plot(figure, filename = os.path.join(cwd, 'plots', method + '_relative.html'), auto_open = False)
@@ -116,13 +116,13 @@ for method in methods:
     trace3 = go.Scatter(x = df.index, y = df.means.pct_change().fillna(0), mode = 'lines', name = 'Mean')
     trace4 = go.Scatter(x = df.index, y = df.stds.pct_change().fillna(0), mode = 'lines', name = 'SD')
     trace5 = go.Scatter(x = df.index, y = df.iqrs.pct_change().fillna(0), mode = 'lines', name = 'IQR')
-    data = [trace3, trace4, trace5]
+    data   = [trace3, trace4, trace5]
     layout = dict(height=600, width=1000, yaxis = dict(title = 'Percentage change in complexity'), xaxis = dict(tickformat = '%Y-%m-%d', dtick = 'M6'), legend=dict(orientation = 'h', x=0, y=-0.2))
     figure = dict(data=data, layout=layout)
     plotly.offline.plot(figure, filename = os.path.join(cwd, 'plots', method + '_percentage.html'), auto_open = False)
 
     # generate yearly aggregates
-    g = df.groupby(["year"])
+    g              = df.groupby(["year"])
     yearlyAverages = g.aggregate({'iqrs':np.mean, 'means':np.mean, 'stds':np.mean})
     yearlyAverages = yearlyAverages.loc[yearlyAverages.index > '2011']
     del df['year']

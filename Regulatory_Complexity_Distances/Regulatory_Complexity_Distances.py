@@ -46,14 +46,14 @@ from functions import *
 
 # load paragraphs with dates and sentences
 cwd = os.getcwd()
-bd = os.path.normpath(os.path.join(cwd, ".."))
+bd  = os.path.normpath(os.path.join(cwd, ".."))
 
 with open(os.path.join(bd, 'Regulatory_Complexity_Preprocessing', 'completeVersions'),'rb') as g:
      versions = pickle.load(g)
 
 # prepare for multithreaded processing
 numCores = int(math.floor(multiprocessing.cpu_count()))
-pool = multiprocessing.Pool(processes=numCores)
+pool     = multiprocessing.Pool(processes=numCores)
 
 # create directory for output measures
 directory = os.path.join(os.getcwd(), 'output')
@@ -80,47 +80,47 @@ for method in ['average', 'tfidf', 'wmd', 'doc2vec']:
         for s in data:
             for token in s:
                 frequency[token] += 1
-        stop = set(stopwords.words('english'))
+        stop = set(stopwords.words('german'))
 
     # calculate distances
     vMeans = []
-    vStds = []
-    vIQRs = []
+    vStds  = []
+    vIQRs  = []
     for key in tqdm(sorted(versions)):
         date = key
         sentences = versions[key]
         if method == 'wmd':
             sentences = wmdPrep(sentences, frequency, stop)
             sentences = [s for s in sentences if s]
-            x = len(sentences)
-            indices = [(i,j) for i,j in itertools.product(range(x), range(x)) if (i != j) and (i < j)]
-            inputs = [(i[0], i[1], sentences, model) for i in indices]
-            distList = pool.map(wmdDist, inputs)
-            dists = [d for d in distList if d != float('inf')]
+            x         = len(sentences)
+            indices   = [(i,j) for i,j in itertools.product(range(x), range(x)) if (i != j) and (i < j)]
+            inputs    = [(i[0], i[1], sentences, model) for i in indices]
+            distList  = pool.map(wmdDist, inputs)
+            dists     = [d for d in distList if d != float('inf')]
         else:
             if method == 'average':
-                inputs = [(s, model) for s in sentences]
+                inputs   = [(s, model) for s in sentences]
                 sentVecs = pool.map(avAggreg,inputs)
                 sentVecs = [s for s in sentVecs if s]
 
             elif method == 'tfidf':
-                dictionary = corpora.Dictionary(sentences)
-                corpus = [dictionary.doc2bow(s) for s in sentences]
-                tfidf = models.TfidfModel(corpus)
+                dictionary   = corpora.Dictionary(sentences)
+                corpus       = [dictionary.doc2bow(s) for s in sentences]
+                tfidf        = models.TfidfModel(corpus)
                 corpus_tfidf = tfidf[corpus]
-                dicCorpus = {dictionary.get(id): value for doc in corpus_tfidf for id, value in doc}
-                inputs =[(s, model, dicCorpus) for s in sentences]
-                sentVecs = pool.map(tfidfAggreg,inputs)
-                sentVecs = [s for s in sentVecs if s]
+                dicCorpus    = {dictionary.get(id): value for doc in corpus_tfidf for id, value in doc}
+                inputs       =[(s, model, dicCorpus) for s in sentences]
+                sentVecs     = pool.map(tfidfAggreg,inputs)
+                sentVecs     = [s for s in sentVecs if s]
 
             elif method == 'doc2vec':
-                inputs = [(s, model) for s in sentences]
+                inputs   = [(s, model) for s in sentences]
                 sentVecs = pool.map(getVectors, inputs)
 
             x = len(sentVecs)
             indices = [(i,j) for i,j in itertools.product(range(x), range(x)) if (i != j) and (i < j)]
-            inputs = [(i[0], i[1], sentVecs) for i in indices]
-            dists = pool.map(distances,inputs)
+            inputs  = [(i[0], i[1], sentVecs) for i in indices]
+            dists   = pool.map(distances,inputs)
 
         # dispersion measures per version
         try:
@@ -132,8 +132,8 @@ for method in ['average', 'tfidf', 'wmd', 'doc2vec']:
         except RuntimeWarning:
             std = 0
         try:
-            q1 = np.percentile(dists, 25)
-            q3 = np.percentile(dists, 75)
+            q1  = np.percentile(dists, 25)
+            q3  = np.percentile(dists, 75)
             iqr = q3 - q1
         except:
             iqr = 0

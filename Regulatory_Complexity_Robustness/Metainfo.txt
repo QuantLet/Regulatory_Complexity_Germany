@@ -3,6 +3,6 @@ Published in : Measuring Regulatory Complexity and its Impact on the German Bank
 Description : Computes regressions and figures for economic effects of the dataset split in small and in large banks.
 Keywords : Regulatory_Complexity, regression, fixed-effects, robustness, heteroscedasticity-robust, economic-effects, stargazer
 Author : Sabine Bertram
-Input: - regressiondata.csv: sample data and yearly aggregates of complexity, located in Regulatory_Complexity_Regressiondata/data
-Output: - latex regression tables for robustness checks
-        - descriptives to compute economic effects
+Input: '- regressiondata.csv: sample data and yearly aggregates of complexity, located in Regulatory_Complexity_Regressiondata/data'
+Output: '- latex regression tables for robustness checks
+         - descriptives to compute economic effects'
