@@ -2,7 +2,7 @@ beautifulsoup4==4.2.1
 gensim==0.13.4.1
 natsort==5.0.2
 nltk==3.2.1
-numpy==1.12.1
+numpy==1.22.0
 pandas==0.20.1
 plotly==2.0.0
 scipy==0.18.1
