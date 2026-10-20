@@ -15,12 +15,8 @@ Keywords: Regulatory_Complexity, data, preprocessing, dataframe, dplyr
 
 Author: Sabine Bertram
 
-Input: - sample data, located in /Regulatory_Complexity_Germany/Sample_Data
-- complexity data, located in /Regulatory_Complexity_Germany/Regulatory_Complexity_Distances/output
-- descriptive data, located in /Regulatory_Complexity_Germany/Regulatory_Complexity_Preprocessing
+Input: - sample data, located in /Regulatory_Complexity_Germany/Sample_Data - complexity data, located in /Regulatory_Complexity_Germany/Regulatory_Complexity_Distances/output - descriptive data, located in /Regulatory_Complexity_Germany/Regulatory_Complexity_Preprocessing
 
-Output: folder "data" with 2 csv files containing
-- regressiondata.csv: sample data and yearly aggregates of complexity
-- descriptivedata.csv: complexity and descriptive data
+Output: folder "data" with 2 csv files containing - regressiondata.csv: sample data and yearly aggregates of complexity - descriptivedata.csv: complexity and descriptive data
 
 ```
