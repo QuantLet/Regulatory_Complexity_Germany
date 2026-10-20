@@ -15,9 +15,7 @@ Keywords: Regulatory_Complexity, complexity-measure, word2vec, doc2vec, gensim, 
 
 Author: Sabine Bertram
 
-Input: - wordModel: the gensim word2vec model
-- sentenceModel: the gensim doc2vec model
-- completeVersions: a dictionary with key: date, value: list of sentences
+Input: - wordModel: the gensim word2vec model - sentenceModel: the gensim doc2vec model - completeVersions: a dictionary with key: date, value: list of sentences
 
 Output: folder 'output' with files called METHOD_METRIC.txt for each distance calculation method and each metric (mean, sd, iqr)
 
