@@ -17,9 +17,6 @@ Author: Sabine Bertram
 
 Input: - regressiondata.csv: sample data and yearly aggregates of complexity, located in Regulatory_Complexity_Regressiondata/data
 
-Output: - folder "output" which contains regression outputs and test outputs
-- latex code for regression tables
-- figures to compute economic effects
-- residual plots
+Output: - folder "output" which contains regression outputs and test outputs - latex code for regression tables - figures to compute economic effects - residual plots
 
 ```
