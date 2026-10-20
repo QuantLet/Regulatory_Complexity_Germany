@@ -17,7 +17,6 @@ Author: Sabine Bertram
 
 Input: - regressiondata.csv: sample data and yearly aggregates of complexity, located in Regulatory_Complexity_Regressiondata/data
 
-Output: - latex regression tables for robustness checks
-- descriptives to compute economic effects
+Output: - latex regression tables for robustness checks - descriptives to compute economic effects
 
 ```
