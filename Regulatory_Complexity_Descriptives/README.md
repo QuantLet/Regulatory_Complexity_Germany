@@ -15,9 +15,8 @@ Keywords: Regulatory_Complexity, descriptive-statistics, summary-statistics, cor
 
 Author: Sabine Bertram
 
-Input: - regressiondata.csv: sample data and yearly aggregates of complexity, located in Regulatory_Complexity_Regressiondata/data
-- descriptivedata.csv: complexity and descriptive data, located in Regulatory_Complexity_Regressiondata/data
+Input: - regressiondata.csv: sample data and yearly aggregates of complexity, located in Regulatory_Complexity_Regressiondata/data - descriptivedata.csv: complexity and descriptive data, located in Regulatory_Complexity_Regressiondata/data
 
-Output: 1. Summary statistics complexity measures
+Output: 1. Summary statistics complexity measures 2. Correlation table 3. Summary statistics bank variables
 
 ```
