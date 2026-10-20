@@ -17,6 +17,6 @@ Author: Sabine Bertram
 
 Input: complexity measures (mean, std, iqr) in /Regulatory_Complexity_Distances/output
 
-Output: folder "plots" with plots of
+Output: folder "plots" with plots of 1. relative change of the complexity over time, relative to the initial value 2. percentage change of the complexity over time
 
 ```
