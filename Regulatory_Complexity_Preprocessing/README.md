@@ -17,8 +17,6 @@ Author: Sabine Bertram
 
 Input: HTM pages
 
-Output: - pythonData: a dictionary of tuples with key: paragraphs, value: (date, list of sentences)
-- modelData: a list of sentences for the vector learning process
-- completeVersions: a dictionary of tuples with key: date, value: list of sentences
+Output: - pythonData: a dictionary of tuples with key: paragraphs, value: (date, list of sentences) - modelData: a list of sentences for the vector learning process - completeVersions: a dictionary of tuples with key: date, value: list of sentences
 
 ```
